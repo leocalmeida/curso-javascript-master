@@ -30,4 +30,4 @@ if(pesoValido && alturaValido){
     console.log(imc);
 }
 
-//ser'a que agora vai?
+//Agora FOI meu bom
