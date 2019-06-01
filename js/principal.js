@@ -29,3 +29,5 @@ if(pesoValido && alturaValido){
     tdImc.textContent = imc;
     console.log(imc);
 }
+
+//ser'a que agora vai?
