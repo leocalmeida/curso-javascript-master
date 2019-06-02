@@ -1,5 +1,5 @@
 var pacientes = document.querySelectorAll(".paciente")
-
+//Calcula IMC
 for (var i = 0; i < pacientes.length; i++) {
   var paciente = pacientes[i]
   var tdPeso = paciente.querySelector(".info-peso")
@@ -23,7 +23,7 @@ for (var i = 0; i < pacientes.length; i++) {
 
 
 
-  if (altura >= 3 || altura <= 0) {
+  if (altura >= 300 || altura <= 0) {
     tdImc.textContent = "Altura inválida"
     alturaValido = false
     paciente.classList.add("paciente-invalido")
@@ -32,15 +32,15 @@ for (var i = 0; i < pacientes.length; i++) {
 
 
   if (pesoValido && alturaValido) {
-    var imc = peso / (altura * altura)
-    tdImc.textContent = imc.toFixed(2)
+    var imc = calculaImc(peso, altura)
+    tdImc.textContent = imc
   }
 }
+//-----------------------------------Fim Calcula IMC
 
-
-var botaoAdicionar = document.querySelector("#adicionar-paciente")
-
-botaoAdicionar.addEventListener("click", function() {
-  console.log("cliquei no botao")
-})
-//leonardo SSH testando
+function calculaImc(peso, altura) {
+  var imc = 0
+  var auxAltura = altura/100
+  var imc = (peso / (auxAltura * auxAltura))
+  return imc.toFixed(2)
+}
