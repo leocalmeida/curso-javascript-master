@@ -6,45 +6,26 @@ botaoAdicionar.addEventListener("click", function(event) {
   var form = document.querySelector("#form-adiciona")
 
   var paciente = dadosFormulario(form)
+  var pacienteTr = montaTr(paciente)
 
-  var validacaoPaciente = validaPaciente(paciente)
+  var erros = validaPaciente(paciente)
+  console.log(erros);
 
-  var gp = document.querySelector("ul")
-
-  if (validacaoPaciente.length>0) {
+  if (erros.length>0) {
     console.log('invalido')
-    var lista = document.createElement("li")
-    for (var i = 0; i < validacaoPaciente.length; i++) {
-      lista.textContent=validacaoPaciente[i]
-      gp.appendChild(lista)
-
-    }
-
-
-
+    mensagensDeErro(erros)
     return;
   }
 
-  var pacienteTr = montaTr(paciente)
   var tabela = document.querySelector("#tabela-pacientes")
   tabela.appendChild(pacienteTr)
   console.log('feito!');
 
 
   form.reset()
+  var ul = document.querySelector('#mensagens-erro');
+  ul.innerHTML = ""
 })
-
-//Funcao responsavel por pegar os dados do paciente
-function dadosFormulario(form) {
-  var paciente = {
-    nome: form.nome.value,
-    peso: form.peso.value,
-    altura: form.altura.value,
-    gordura: form.gordura.value,
-    imc: calculaImc(form.peso.value, form.altura.value)
-  }
-  return paciente
-}
 
 //Funcao responsavel por criar a TR e adicionar os TDs
 function montaTr(paciente) {
@@ -60,25 +41,11 @@ function montaTr(paciente) {
   return pacienteTr
 }
 
+//Monta o TD
 function montaTd(dado, classe) {
   var td = document.createElement("td")
   td.textContent = dado
   td.classList.add(classe)
 
   return td
-}
-
-
-function validaPaciente(x) {
-  var erros = [];
-  if (!validaPeso(x.peso)) {}
-  else {
-    erros.push("Peso Invalido");
-  }
-
-  if (!validaAltura(x.altura)) {}
-  else{
-    erros.push("Altura Invalido");
-  }
-  return erros;
 }

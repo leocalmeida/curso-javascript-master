@@ -45,7 +45,7 @@ function calculaImc(peso, altura) {
 }
 
 function validaPeso(massa) {
-  if (massa >= 0 && massa < 1000) {
+  if (massa > 0 && massa < 1000) {
     return true
   } else {
     return false
@@ -54,6 +54,14 @@ function validaPeso(massa) {
 
 function validaAltura(alt) {
   if (alt>0 && alt <300 ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validaGordura(fat) {
+  if (fat>0) {
     return true;
   } else {
     return false;
