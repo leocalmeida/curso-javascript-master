@@ -2,30 +2,28 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente")
 
 botaoAdicionar.addEventListener("click", function(event) {
   event.preventDefault()
-
   var form = document.querySelector("#form-adiciona")
-
   var paciente = dadosFormulario(form)
-  var pacienteTr = montaTr(paciente)
-
   var erros = validaPaciente(paciente)
-  console.log(erros);
 
-  if (erros.length>0) {
+  if (erros.length > 0) {
     console.log('invalido')
     mensagensDeErro(erros)
     return;
   }
 
-  var tabela = document.querySelector("#tabela-pacientes")
-  tabela.appendChild(pacienteTr)
-  console.log('feito!');
-
+  adicionaPacienteNaTabela(paciente)
 
   form.reset()
-  var ul = document.querySelector('#mensagens-erro');
-  ul.innerHTML = ""
+  var mensagemErro = document.querySelector('#mensagens-erro');
+  mensagemErro.innerHTML = ""
 })
+
+function adicionaPacienteNaTabela(paciente) {
+  var pacienteTr = montaTr(paciente)
+  var tabela = document.querySelector("#tabela-pacientes")
+  tabela.appendChild(pacienteTr)
+}
 
 //Funcao responsavel por criar a TR e adicionar os TDs
 function montaTr(paciente) {
